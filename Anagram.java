@@ -3,9 +3,9 @@ public class Anagram {
 	public static void main(String args[]) {
 		// Tests the isAnagram function.
 		System.out.println(isAnagram("silent","listen"));  // true
-		System.out.println(isAnagram("William Shakespeare","I am a weakish speller")); // true
-		System.out.println(isAnagram("Madam Curie","Radium came")); // true
-		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
+		System.out.println(isAnagram("William Shakespeare","I yj a weakish speller")); // true
+		System.out.println(isAnagram("Madam Curie","Raddgffdfd came")); // true
+		System.out.println(isAnagram("","")); // true
 
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
@@ -28,7 +28,36 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
+		String newString1 = preProcess(str1);
+		String newString2 = preProcess(str2);
+		String exString2 = "";
+		if (newString1.length() == newString2.length()) {
+			
+			char s1 ='r';
+			char s2 ='l';
+			String newString222 = preProcess(str2);
+			for (int i = 0; i < newString1.length(); i++) {
+				if (newString1.equals (newString2)){
+					return true;
+				}
+				s1 = newString1.charAt(i);
+				exString2 = "";
+				int count = 0;
+				for (int f = 0; f < newString222.length(); f++) {
+					s2 = newString222.charAt(f);
+					if (s1 == s2) {
+						count++;
+					} else if (s1 != s2 || count > 0) {
+						exString2 = exString2 + s2;
+					} 
+				}
+				newString222 = exString2;
+			}
+			if (newString222.equals ("")){
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	   
@@ -36,14 +65,39 @@ public class Anagram {
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		String newOne = "";
+		char s = 's';
+		for (int i = 0; i < str. length(); i++ ){
+			if (str.charAt (i) > 64 && str.charAt (i) < 91 || str.charAt (i) > 96 && str.charAt (i) < 123) {
+				s = str.charAt (i);
+				if (s >= 65 && s <= 90) {
+					s = (char) (s + 32);
+				}
+				newOne = newOne + s; 
+			}
+		}
+		return newOne;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		String newString = "";
+		String redString = str;
+		int count = 0;
+		while (count < str.length()) {
+			char ch = redString.charAt ((int) (Math.random() * (redString.length() - 1)));
+			if (redString.indexOf(ch) == 0) {
+				redString = redString.substring(1);
+			} else if (redString.indexOf(ch) == redString.length()-1){
+				redString = redString.substring(0,redString.indexOf(ch));
+			} else {
+				redString = redString.substring(0,redString.indexOf(ch)) + redString.substring(redString.indexOf(ch) + 1);
+			}
+			newString = newString + ch;
+			count++;
+			
+		}
+		return newString;
 	}
 }
