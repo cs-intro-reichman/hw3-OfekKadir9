@@ -45,9 +45,9 @@ public class Anagram {
 				int count = 0;
 				for (int f = 0; f < newString222.length(); f++) {
 					s2 = newString222.charAt(f);
-					if (s1 == s2) {
+					if (s1 == s2 && count == 0) {
 						count++;
-					} else if (s1 != s2 || count > 0) {
+					} else {
 						exString2 = exString2 + s2;
 					} 
 				}
@@ -68,7 +68,7 @@ public class Anagram {
 		String newOne = "";
 		char s = 's';
 		for (int i = 0; i < str. length(); i++ ){
-			if (str.charAt (i) > 64 && str.charAt (i) < 91 || str.charAt (i) > 96 && str.charAt (i) < 123) {
+			if (str.charAt (i) > 64 && str.charAt (i) < 91 || str.charAt (i) > 96 && str.charAt (i) < 123 || str.charAt (i) == 32) {
 				s = str.charAt (i);
 				if (s >= 65 && s <= 90) {
 					s = (char) (s + 32);
@@ -86,7 +86,7 @@ public class Anagram {
 		String redString = str;
 		int count = 0;
 		while (count < str.length()) {
-			char ch = redString.charAt ((int) (Math.random() * (redString.length() - 1)));
+			char ch = redString.charAt ((int) (Math.random() * (redString.length())));
 			if (redString.indexOf(ch) == 0) {
 				redString = redString.substring(1);
 			} else if (redString.indexOf(ch) == redString.length()-1){
